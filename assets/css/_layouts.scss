@@ -1,0 +1,7 @@
+.default-layout {
+  background-color: #F6FCFF;
+  @apply min-h-screen;
+}
+.login-page {
+  @apply min-h-screen max-w-[414px]  mx-auto relative;
+}

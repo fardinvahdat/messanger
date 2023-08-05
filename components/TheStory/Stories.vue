@@ -1,0 +1,182 @@
+<template>
+  <ClientOnly>
+    <Stories
+      :autoplay="true"
+      :duration="3000"
+      :breakpoint="768"
+      :stories="storyList"
+      @ended="$emit('close')"
+      @slide_changed="slideChangedEvent"
+      @swipe_down="stopStoryPlay"
+      ref="stories_component"
+    >
+      <template v-slot:slide="{ slide }">
+        <div
+          class="slide h-screen bg-no-repeat bg-center bg-contain flex flex-col justify-between"
+          :style="'background:url(' + slide?.image + ')'"
+        >
+          <Header @change="changeDropdown" />
+        </div>
+      </template>
+    </Stories>
+    <div class="z-[100] max-w-[414px] fixed w-full px-2 mb-6 bottom-0 chat-page">
+      <section class="chat-form bg-white border-0 relative z-[100000]">
+        <section class="absolute left-2 bottom-full z-[100000]" v-if="showEmoji">
+          <EmojiPicker :native="true" @select="addEmoji"/>
+        </section>
+        <section class="flex items-center justify-between">
+          <el-button class="btn" @click="toggleShowEmoji" text>
+            <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_1_15034)">
+                <path
+                    d="M8 0C10.1217 0 12.1566 0.842855 13.6569 2.34315C15.1571 3.84344 16 5.87827 16 8C16 10.1217 15.1571 12.1566 13.6569 13.6569C12.1566 15.1571 10.1217 16 8 16C5.87827 16 3.84344 15.1571 2.34315 13.6569C0.842855 12.1566 0 10.1217 0 8C0 5.87827 0.842855 3.84344 2.34315 2.34315C3.84344 0.842855 5.87827 0 8 0V0ZM7 6.5C7 5.672 6.552 5 6 5C5.448 5 5 5.672 5 6.5C5 7.328 5.448 8 6 8C6.552 8 7 7.328 7 6.5ZM4.285 9.567C4.17016 9.63331 4.08637 9.74251 4.05205 9.8706C4.01773 9.99869 4.0357 10.1352 4.102 10.25C4.49688 10.9344 5.06505 11.5026 5.74934 11.8976C6.43363 12.2926 7.20989 12.5004 8 12.5C8.79006 12.5002 9.56625 12.2923 10.2505 11.8973C10.9348 11.5024 11.503 10.9342 11.898 10.25C11.9313 10.1931 11.9531 10.1302 11.962 10.0649C11.971 9.99953 11.9669 9.93308 11.95 9.86933C11.9332 9.80558 11.9039 9.74579 11.8638 9.69341C11.8238 9.64103 11.7738 9.59709 11.7167 9.56412C11.6596 9.53115 11.5965 9.5098 11.5311 9.5013C11.4657 9.4928 11.3993 9.49732 11.3357 9.5146C11.272 9.53187 11.2124 9.56157 11.1603 9.60197C11.1082 9.64237 11.0646 9.69268 11.032 9.75C10.7249 10.2823 10.2829 10.7244 9.75067 11.0316C9.2184 11.3388 8.61457 11.5004 8 11.5C7.38543 11.5004 6.7816 11.3388 6.24933 11.0316C5.71705 10.7244 5.27511 10.2823 4.968 9.75C4.90169 9.63516 4.79249 9.55137 4.6644 9.51705C4.53631 9.48273 4.39984 9.5007 4.285 9.567ZM9.437 6.257C9.40509 6.19961 9.36219 6.14907 9.31074 6.10826C9.2593 6.06746 9.20032 6.03718 9.13718 6.01917C9.07403 6.00115 9.00796 5.99575 8.94273 6.00327C8.8775 6.01079 8.81439 6.03109 8.757 6.063C8.69961 6.09491 8.64907 6.13781 8.60826 6.18926C8.56746 6.2407 8.53718 6.29968 8.51917 6.36282C8.50115 6.42596 8.49575 6.49204 8.50327 6.55727C8.51079 6.6225 8.53109 6.68561 8.563 6.743C8.893 7.338 9.521 7.75 10.25 7.75C10.98 7.75 11.606 7.338 11.937 6.743C11.9689 6.68561 11.9892 6.6225 11.9967 6.55727C12.0042 6.49204 11.9988 6.42596 11.9808 6.36282C11.9628 6.29968 11.9325 6.2407 11.8917 6.18926C11.8509 6.13781 11.8004 6.09491 11.743 6.063C11.6856 6.03109 11.6225 6.01079 11.5573 6.00327C11.492 5.99575 11.426 6.00115 11.3628 6.01917C11.2997 6.03718 11.2407 6.06746 11.1893 6.10826C11.1378 6.14907 11.0949 6.19961 11.063 6.257C10.984 6.40444 10.8669 6.52797 10.7239 6.61469C10.5809 6.70142 10.4172 6.74814 10.25 6.75C10.0828 6.74814 9.91908 6.70142 9.77607 6.61469C9.63306 6.52797 9.51596 6.40444 9.437 6.257Z"
+                    fill="#90A4AE"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_1_15034">
+                  <rect width="16" height="16" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </el-button>
+          <el-input v-model="replyText" @keyup="isTyping" />
+          <el-button class="btn" text @click="getStream" >
+            <svg
+                width="13"
+                height="17"
+                viewBox="0 0 13 17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                  d="M6.20766 10.7368C7.69292 10.7368 8.88292 9.53789 8.88292 8.05263L8.89187 2.68421C8.89187 1.19895 7.69292 0 6.20766 0C4.72239 0 3.52345 1.19895 3.52345 2.68421V8.05263C3.52345 9.53789 4.72239 10.7368 6.20766 10.7368ZM11.6477 8.05263C11.2719 8.05263 10.9587 8.32105 10.905 8.68789C10.574 11.0232 8.47134 12.6158 6.20766 12.6158C3.94397 12.6158 1.84134 11.0321 1.51029 8.68789C1.48273 8.51079 1.39271 8.34938 1.2565 8.23287C1.1203 8.11635 0.946898 8.05242 0.767657 8.05263C0.302394 8.05263 -0.0555005 8.46421 0.0071311 8.92053C0.41871 11.5779 2.65555 13.6626 5.31292 14.0653V16.1053C5.31292 16.5974 5.71555 17 6.20766 17C6.69976 17 7.10239 16.5974 7.10239 16.1053V14.0653C9.75081 13.6805 11.9966 11.5779 12.4082 8.92053C12.4226 8.81221 12.4137 8.70206 12.3821 8.59747C12.3504 8.49287 12.2968 8.39625 12.2248 8.31407C12.1528 8.23188 12.064 8.16604 11.9645 8.12095C11.865 8.07586 11.7569 8.05257 11.6477 8.05263Z"
+                  fill="#90A4AE"
+              />
+            </svg>
+          </el-button>
+          <el-button class="btn" text >
+            <svg
+                width="17"
+                height="17"
+                viewBox="0 0 17 17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                  d="M2.30107 1.68295L15.0936 7.80174C15.2227 7.86355 15.3317 7.96062 15.408 8.08175C15.4844 8.20288 15.5248 8.34313 15.5248 8.48629C15.5248 8.62946 15.4844 8.7697 15.408 8.89083C15.3317 9.01196 15.2227 9.10904 15.0936 9.17085L2.30107 15.2896C2.16988 15.3525 2.02337 15.3764 1.87901 15.3583C1.73464 15.3403 1.5985 15.2812 1.48679 15.188C1.37509 15.0947 1.29253 14.9714 1.24895 14.8326C1.20538 14.6938 1.20262 14.5454 1.241 14.405L2.52086 9.71303C2.53653 9.65552 2.56877 9.6039 2.61358 9.5646C2.65839 9.5253 2.71377 9.50006 2.77282 9.49203L8.97175 8.64992C8.9976 8.64629 9.02207 8.63606 9.04281 8.62021C9.06355 8.60437 9.07985 8.58344 9.09015 8.55945L9.10107 8.5212C9.10586 8.48731 9.09905 8.45279 9.08175 8.42325C9.06444 8.39371 9.03766 8.37089 9.00575 8.35849L8.97236 8.34938L2.7795 7.50788C2.72056 7.49974 2.66531 7.47444 2.62062 7.43515C2.57593 7.39586 2.54377 7.3443 2.52815 7.28688L1.241 2.56756C1.20262 2.42723 1.20538 2.27882 1.24895 2.14001C1.29253 2.0012 1.37509 1.87785 1.48679 1.78463C1.5985 1.69142 1.73464 1.63227 1.87901 1.61425C2.02337 1.59622 2.16988 1.62007 2.30107 1.68295Z"
+                  fill="#50CCE8"
+              />
+            </svg>
+          </el-button>
+        </section>
+      </section>
+    </div>
+  </ClientOnly>
+</template>
+
+<script setup>
+import Header from "@/components/TheStory/Header.vue";
+import { ref } from "vue";
+
+const stories = useStoryList();
+const stories_component = ref(null);
+const currentStoryIndex = ref(0);
+const users = useUsers();
+const account = useAccount();
+const comment = ref("");
+const replyText = ref('')
+const showEmoji = ref(false)
+
+//methods
+
+const slideChangedEvent = (e) => {
+  if (stories_component.value) {
+    if (calculateShouldContinueStory() == false) {
+      stopStoryPlay()
+    }
+  }
+  stories.value[stories_component.value.currentStoryIndex].slides[e].isVisited = true;
+  currentStoryIndex.value = e;
+
+  account.value = users.value.filter(
+    (item) =>
+      stories.value[stories_component.value.currentStoryIndex].userId == item.id
+  )[0];
+};
+const isTyping = () => {
+  if (replyText.value) {
+    stopStoryPlay()
+  }
+  else {
+    continueStoryPlay()
+  }
+}
+const stopStoryPlay = () => {
+  stories_component.value.stopStory()
+  stories_component.value.resetStory()
+}
+const continueStoryPlay = () => {
+  stories_component.value.playStory()
+}
+const toggleShowEmoji = () => {
+  showEmoji.value = !showEmoji.value
+}
+const addEmoji = (e) => {
+  replyText.value += e.i
+}
+
+const getStream = () => {
+  stopStoryPlay()
+  navigator.mediaDevices
+      .getUserMedia({video: false, audio: true})
+      .then((stream) => {
+        window.localStream = stream; // A
+        window.localAudio.srcObject = stream; // B
+        window.localAudio.autoplay = true; // C
+      })
+      .catch((err) => {
+        console.error(`you got an error: ${err}`);
+        continueStoryPlay()
+      });
+}
+const calculateShouldContinueStory = () => {
+  if (showEmoji.value == false && replyText.value.length == 0) {
+    return true
+  }
+  else {
+    return false
+  }
+}
+const changeDropdown = (e) => {
+  if (e) {
+
+    stories_component.value.prevSlide()
+    stopStoryPlay()
+  }
+  else
+    continueStoryPlay()
+}
+
+//computed
+
+const storyList = computed(() => {
+  return stories.value.filter((item) => item.slides.length);
+});
+
+// watcher
+watch(showEmoji, (value=> {
+  if (value) {
+    stopStoryPlay()
+  }
+  else {
+    continueStoryPlay()
+  }
+}))
+</script>

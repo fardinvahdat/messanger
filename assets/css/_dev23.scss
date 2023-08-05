@@ -1,0 +1,221 @@
+body {
+  @apply bg-white;
+}
+.home {
+  .header {
+    .tags {
+      @apply mt-2;
+      .el-radio-group {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+      .el-radio-button {
+        span {
+          @apply font-normal px-3.5 border-0 rounded-[50px] bg-primary-500 bg-opacity-30 text-gray-500;
+        }
+        &.active {
+          span {
+            @apply font-bold bg-opacity-100;
+          }
+        }
+      }
+    }
+  }
+}
+
+//place
+
+.place {
+  .modes {
+    @apply pt-2 border-t-[1px];
+    .el-radio-button {
+      span {
+        @apply font-normal px-3.5 border-0 rounded-[50px] bg-primary-500 bg-opacity-30 text-gray-500;
+      }
+      &.active {
+        span {
+          @apply font-bold bg-opacity-100;
+        }
+      }
+    }
+  }
+}
+
+//stories
+
+#stories_wrapper {
+  @apply h-[100vh] #{!important};
+}
+.header-menu {
+  padding: 0 !important;
+}
+.share-drawer {
+  .el-drawer__body {
+    @apply overflow-y-hidden;
+  }
+}
+.post-context-menu {
+  .el-menu-item {
+    @apply gap-2 border-b-[.5px] h-[40px];
+  }
+  .el-sub-menu__title {
+    @apply gap-2 border-b-[.5px] h-[40px];
+    background-color: transparent !important;
+  }
+}
+.home-context-menu {
+  .el-menu-item {
+    @apply gap-2 border-b-[.5px] h-[40px];
+  }
+  .el-sub-menu__title {
+    @apply gap-2 border-b-[.5px] h-[40px];
+    background-color: transparent !important;
+  }
+}
+
+// skills
+
+.add-skill {
+  .form-item {
+    @apply mb-4;
+    .el-input__wrapper {
+      @apply h-[50px] rounded-xl;
+    }
+
+    .base-switch {
+      .switch {
+        --dot: #50cce8;
+      }
+
+      &.active {
+        .switch {
+          div {
+            &:before {
+              background-color: #50cce84d;
+            }
+          }
+          &:before {
+            border-color: #b0bec5;
+          }
+        }
+      }
+    }
+  }
+}
+
+// explore
+
+.explore {
+  .header {
+    .tags {
+      @apply mt-2;
+      .el-radio-group {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+      .el-radio-button {
+        span {
+          @apply font-normal px-3.5 border-0 rounded-[50px] bg-primary-500 bg-opacity-30 text-gray-500;
+        }
+        &.active {
+          span {
+            @apply font-bold bg-opacity-100;
+          }
+        }
+      }
+    }
+  }
+}
+
+.filter {
+  .el-radio__label {
+    @apply font-normal text-gray-500;
+  }
+  .el-radio__input.is-checked + .el-radio__label {
+    @apply font-normal text-gray-500;
+  }
+  .el-radio.el-radio--large .el-radio__inner {
+    @apply w-[22px] h-[22px];
+    &::after {
+      @apply w-[16px] h-[16px] bg-primary-300;
+    }
+  }
+  .el-radio__input.is-checked .el-radio__inner {
+    @apply bg-white border-primary-300;
+  }
+  .pills {
+    @apply font-normal px-3.5 border-0 rounded-[50px] bg-primary-500 bg-opacity-30 text-gray-500 text-sm py-2 mr-1;
+  }
+}
+
+.qa-drawer {
+  .el-drawer__body {
+    padding: 0;
+  }
+}
+
+.follows {
+  .el-tabs__nav {
+    @apply w-full;
+    .el-tabs__item {
+      @apply w-[50%];
+      &.is-active,
+      &:hover {
+        @apply text-primary-500;
+      }
+    }
+    .el-tabs__active-bar {
+      @apply bg-primary-500;
+    }
+  }
+}
+
+.canvas-container {
+  // @apply h-full w-full #{!important};
+}
+.select-box-pills {
+  .el-input__wrapper {
+    @apply rounded-full bg-primary-500 max-w-[80px];
+    input {
+      @apply min-w-[20px];
+    }
+    .el-select__caret.el-icon {
+      margin: 0;
+      color: black;
+    }
+  }
+}
+.ivu-input-number-input {
+  @apply max-w-[80px] bg-primary-500 h-[32px] rounded-full text-center;
+  box-shadow: 0 0 0 1px #dcdfe6 inset;
+  outline: none;
+}
+
+.flex-view {
+}
+  .el-color-picker {
+    border-radius: 100%;
+  }
+.el-color-picker__trigger {
+  width: 36px;
+  min-width: 36px;
+  border: none !important;
+  border-radius: 100%;
+  box-shadow: none;
+  padding: 0 !important;
+  .el-color-picker__color {
+    @apply border-0;
+    .el-color-picker__color-inner {
+      max-width: 36px;
+      height: 36px;
+      border: none;
+      border-radius: 50px;
+    }
+  }
+}

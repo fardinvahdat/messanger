@@ -1,0 +1,281 @@
+.login-page {
+  .login-body {
+    min-height: calc(100vh - 281px);
+    @apply py-4;
+    background: linear-gradient(
+                    157.44deg,
+                    rgba(255, 255, 255, 0.6) 0.84%,
+                    rgba(255, 255, 255, 0.6) 0.85%,
+                    rgba(255, 255, 255, 0.15) 100%
+    );
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(22.5px);
+
+    > * {
+      max-width: 70%;
+    }
+  }
+
+  .colors-background {
+    max-height: calc(100vh - 281px);
+  }
+
+  .otp {
+    > div {
+      @apply justify-center gap-4;
+      input {
+        @apply w-12 h-12 rounded flex justify-center text-center;
+      }
+    }
+  }
+}
+
+.chat-page {
+  .chat-body {
+    height: calc(100vh - 128px - 39px);
+  }
+
+  .chat-form {
+    @apply px-2 py-3 mx-2  border  rounded-lg border-gray-400;
+    .el-input {
+      .el-input__wrapper {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.call-page {
+  @apply relative;
+  .body {
+    @apply min-h-screen bg-primary-800 bg-opacity-80 relative z-10 pt-5 container;
+    .dialing {
+      @apply flex items-end;
+      .dots {
+        @apply flex items-center gap-1 mb-1 ml-1;
+        .dot {
+          @apply w-1 h-1 rounded-full;
+        }
+      }
+    }
+  }
+  .background {
+    @apply w-full absolute left-0 top-0;
+    img {
+      @apply w-full h-full;
+    }
+  }
+
+  .actions {
+    @apply absolute bottom-0 left-0 w-full py-6 px-3 flex items-center justify-center gap-10 z-10;
+    box-shadow: 0px 4px 10px rgba(80, 204, 232, 0.1);
+  }
+
+  &.is-answered {
+    .body {
+      @apply bg-opacity-10 scroll-m-0;
+      &.multi-voice-call {
+        @apply overflow-auto h-screen pb-44;
+      }
+      &.add-call {
+        @apply p-0 pb-44;
+      }
+    }
+
+    .background {
+      @apply blur-xl;
+    }
+
+    .actions {
+      @apply bg-primary-800 bg-opacity-80;
+      .btn {
+        &:focus {
+          @apply bg-transparent;
+        }
+        &:hover {
+          @apply bg-white bg-opacity-30;
+        }
+      }
+    }
+  }
+
+  &.video-call {
+    @apply max-h-screen overflow-hidden;
+    &.is-answered {
+      .body {
+        min-height: calc(100vh - 98px);
+        max-height: calc(100vh - 98px);
+        @apply bg-opacity-80 p-0;
+        .main-video {
+          @apply bg-white p-3 h-[310px];
+          .image {
+            height: 260px;
+            img {
+              @apply w-full mx-auto max-h-full;
+            }
+          }
+        }
+
+        .other-videos {
+          @apply grid grid-cols-2 px-4 items-center gap-2 overflow-auto max-h-[210px];
+          > * {
+            @apply flex justify-center;
+          }
+        }
+      }
+    }
+  }
+
+  .add-user-to-call {
+    background: linear-gradient(180deg, #F6FCFF 0%, #FFFFFF 100%);
+    @apply relative z-10;
+    .el-input {
+      @apply border rounded-xl border-gray-400 px-1 py-1 bg-white;
+      .el-input-group__append {
+        @apply shadow-none bg-white;
+      }
+
+      .el-input__wrapper {
+        @apply border-0 shadow-none;
+      }
+    }
+  }
+}
+.chat-body {
+  @apply pb-32;
+  .add-chat {
+    .el-input__wrapper {
+      @apply shadow-none;
+    }
+  }
+}
+.settings-saved-page {
+  .el-collapse {
+    @apply border-0 h-auto;
+    .el-collapse-item__header {
+      @apply bg-transparent h-auto border-0;
+    }
+    .el-collapse-item__wrap{
+      @apply bg-transparent mt-2 border-0;
+      .el-collapse-item__content {
+        @apply pb-4;
+      }
+    }
+  }
+  .add-folder {
+    .el-input__wrapper {
+      @apply shadow-none;
+    }
+  }
+}
+.settings-activity-page {
+  .el-input__wrapper {
+    &,&:hover {
+      @apply shadow-none w-full bg-transparent;
+    }
+    .el-input__prefix {
+      @apply hidden;
+    }
+  }
+}
+.parent-notification-settings {
+
+  .el-collapse {
+    @apply border-0 h-auto;
+    .el-collapse-item {
+      @apply mb-5 pb-3 border-b border-primary-300 border-opacity-10;
+    }
+    .el-collapse-item__header {
+      @apply bg-transparent h-auto border-0;
+    }
+    .el-collapse-item__wrap{
+      @apply bg-transparent mt-2 border-0;
+      .el-collapse-item__content {
+        @apply pb-4;
+      }
+    }
+  }
+}
+.show-event {
+  .event-divider {
+    > * {
+      @apply rounded-lg;
+      height: calc(100% - 10px);
+    }
+  }
+  .show-event-collapse {
+    .el-collapse-item__header {
+      @apply hidden
+    }
+  }
+}
+.add-calendar-page {
+  .time-section {
+    .el-input__wrapper {
+      @apply w-full shadow-none;
+    }
+    .el-select {
+      .el-input, .el-input.is-focus {
+        .el-input__wrapper {
+          --el-select-input-focus-border-color: '#FFFFFF';
+          --el-transition-box-shadow: '#FFFFFF';
+          @apply w-full shadow-none;
+        }
+      }
+    }
+  }
+}
+.day-show-popover {
+  @apply p-2;
+  .el-popper__arrow {
+    @apply hidden;
+  }
+}
+.group-chat-item {
+  .el-collapse {
+    --el-collapse-border-color: '';
+    .el-collapse-item__header {
+      @apply hidden;
+    }
+    .el-collapse-item__wrap {
+      @apply bg-transparent;
+    }
+  }
+}
+.financial-page-menu {
+  .el-input__wrapper {
+    @apply bg-transparent;
+  }
+}
+.account {
+  .block-area {
+    @apply relative;
+    height: calc(100vh - 200px);
+  }
+}
+.private-chat {
+  .block-area {
+    @apply relative;
+    height: calc(100vh - 200px);
+  }
+}
+.add-post {
+  .add-post-body {
+    .caption {
+      .el-textarea__inner {
+        @apply bg-transparent border-none shadow-none;
+      }
+    }
+    .add-music {
+      .el-radio__label {
+        @apply w-full;
+      }
+    }
+  }
+}
+.help-page {
+  .el-collapse-item__header,
+  .el-collapse-item__wrap{
+    @apply bg-transparent;
+  }
+}
