@@ -5,7 +5,10 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "start": "node .output/server/index.mjs",
+    "build-dev": "cross-env NODE_ENV=dev nuxt build",
+    "prod-debug": "node --inspect node_modules/nuxt/.bin/nuxt start"
   },
   "devDependencies": {
     "@element-plus/nuxt": "^1.0.4",
